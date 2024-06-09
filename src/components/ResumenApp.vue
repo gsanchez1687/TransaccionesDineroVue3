@@ -19,7 +19,7 @@
             </h3>
           </div>
           <div class="card-body">
-            <p class="card-text h2 text-center text-danger">ca {{ formatNumber(gastos) }}</p>
+            <p class="card-text h2 text-center text-danger"> {{ formatNumber(gastos) }}</p>
           </div>
         </div>
       </div>

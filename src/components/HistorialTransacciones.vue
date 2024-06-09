@@ -14,7 +14,7 @@
                 $ {{ item.monto }}
               </div>
               <div class="col-2">
-                <button class="btn btn-danger border" aria-label="Eliminar"><i class="bi bi-trash3"></i></button>
+                <button @click="eliminarTransaccion(item.id)" class="btn btn-danger border" aria-label="Eliminar"><i class="bi bi-trash3"></i></button>
               </div>
             </div>
           </div>
@@ -31,6 +31,12 @@ type Transaccion = {
   nombre: string;
   monto: number;
 };
+
+const emit = defineEmits<{
+  (e: 'eliminar-transaccion', id: number): void;
+}>();
+
+const eliminarTransaccion = (id: number) =>emit('eliminar-transaccion', id);
 
 type propTypes = {
   transacciones: Transaccion[];

@@ -15,10 +15,10 @@
       <ResumenApp :ingresos="ingresos" :gastos="gastos" />
     <!--/Resumen-->
     <!--HistorialTransacciones-->
-      <HistorialTransacciones  :transacciones="transacciones" />
+      <HistorialTransacciones :transacciones="transacciones" @eliminar-transaccion="eliminarTransaccion($event)" />
     <!--/HistorialTransacciones-->
     <!--AgregarTransaccion-->
-      <AgregaTransaccionApp />
+      <AgregaTransaccionApp @agregar-transaccion="agregarTransaccion" />
     <!--/AgregarTransaccion-->
   </div>
 </div>
@@ -33,7 +33,9 @@ import HistorialTransacciones from './HistorialTransacciones.vue';
 import AgregaTransaccionApp from './AgregaTransaccionApp.vue';
 import Border from './Border.vue';
 import { ref, computed } from 'vue';
+import { useToast } from 'vue-toastification';
 
+const toast = useToast();
 
 type Transaccion = {
   id: number;
@@ -66,6 +68,18 @@ const transacciones = ref<Transaccion[]>([
     monto: -100000
   }
 ]);
+
+//metodo para agregar una transaccion
+const agregarTransaccion = (transaccion: Transaccion) => {
+  transacciones.value.push(transaccion);
+  toast.success('Transacción agregada correctamente');
+};
+
+//metodo para eliminar transaccion
+const eliminarTransaccion = (id: number) => {
+  transacciones.value = transacciones.value.filter(item => item.id !== id);
+  toast.success('Transacción eliminada correctamente');
+};
 
 const total = computed(() => {
   return transacciones.value.reduce((acc, item) => acc + item.monto, 0);
