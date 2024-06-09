@@ -6,7 +6,7 @@
       <EncabezadoApp />
     <!--fin Encabezado-->
     <!--Balance-->
-      <BalanceApp :total="total" />
+      <BalanceApp :total="total" :numeroTransacciones="numeroTransacciones" />
     <!--fin Balance-->
     <!--Border-->
       <Border />
@@ -69,6 +69,10 @@ const transacciones = ref<Transaccion[]>([
 
 const total = computed(() => {
   return transacciones.value.reduce((acc, item) => acc + item.monto, 0);
+});
+
+const numeroTransacciones = computed(() => {
+  return transacciones.value.length;
 });
 
 

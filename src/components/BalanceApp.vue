@@ -8,7 +8,7 @@
      <!--NumeroTransacciones-->
      <div class="col-8">
       <h2 class="text-end"># Transacciones:</h2>
-      <h3 class="text-end">3</h3>
+      <h3 class="text-end">{{ numeroTransacciones }}</h3>
     </div>
     <!--/NumeroTransacciones-->
     <!--/Balance-->
@@ -20,9 +20,11 @@ import { defineProps, type PropType } from 'vue';
 
 type propTypes = {
   total: number;
-}
+  numeroTransacciones: number;
+};
 
 defineProps<propTypes>();
+
 
 const formatNumber = (value: number) => {
   return new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(value);
