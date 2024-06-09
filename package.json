@@ -16,6 +16,7 @@
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
     "font-awesome": "^4.7.0",
+    "toastification": "^0.1.4",
     "vue": "^3.4.21"
   },
   "devDependencies": {

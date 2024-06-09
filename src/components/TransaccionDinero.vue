@@ -12,7 +12,7 @@
       <Border />
     <!--fin border-->
     <!--Resumen-->
-      <ResumenApp />
+      <ResumenApp :ingresos="ingresos" :gastos="gastos" />
     <!--/Resumen-->
     <!--HistorialTransacciones-->
       <HistorialTransacciones  :transacciones="transacciones" />
@@ -73,6 +73,14 @@ const total = computed(() => {
 
 const numeroTransacciones = computed(() => {
   return transacciones.value.length;
+});
+
+const ingresos = computed(() => {
+  return transacciones.value.filter(item => item.monto > 0).reduce((acc, item) => acc + item.monto, 0);
+});
+
+const gastos = computed(() => {
+  return transacciones.value.filter(item => item.monto < 0).reduce((acc, item) => acc + item.monto, 0);
 });
 
 

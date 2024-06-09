@@ -8,7 +8,7 @@
             </h3>
           </div>
           <div class="card-body">
-            <p class="card-text h2 text-center text-success">+ $100.00</p>
+            <p class="card-text h2 text-center text-success">+ {{ formatNumber(ingresos) }}</p>
           </div>
         </div>
       </div>
@@ -19,9 +19,26 @@
             </h3>
           </div>
           <div class="card-body">
-            <p class="card-text h2 text-center text-danger">- $100.00</p>
+            <p class="card-text h2 text-center text-danger">ca {{ formatNumber(gastos) }}</p>
           </div>
         </div>
       </div>
     </div>
 </template>
+
+<script setup lang="ts">
+
+import { defineProps, type PropType } from 'vue';
+
+type propTypes = {
+  ingresos: number;
+  gastos: number;
+};
+
+defineProps<propTypes>();
+
+const formatNumber = (value: number) => {
+  return new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(value);
+}
+
+</script>
